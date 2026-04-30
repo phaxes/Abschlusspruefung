@@ -49,6 +49,24 @@ case "$COMMAND" in
         done
         ;; 
 
+    delete)
+        # ==========================================
+        # FÜR FEATURE-BRANCH: "Implement note delete"
+        # ==========================================
+        HASH_TO_DELETE="$2"
+        if [ -z "$HASH_TO_DELETE" ]; then
+            echo "Fehler: Bitte gib den Hash der Notiz an, die gelöscht werden soll."
+            exit 1
+        fi
+        
+        if [ -f "$DB_DIR/$HASH_TO_DELETE" ]; then
+            rm "$DB_DIR/$HASH_TO_DELETE"
+            echo "Notiz mit Hash $HASH_TO_DELETE wurde gelöscht."
+        else
+            echo "Fehler: Keine Notiz mit dem Hash $HASH_TO_DELETE gefunden."
+        fi
+        ;;
+
 # ==========================================
         # BASIS-STRUKTUR (Kann von Anfang an rein)
         # ==========================================
