@@ -27,7 +27,27 @@ case "$COMMAND" in
         echo -n "$CONTENT" > "$DB_DIR/$HASH"
         echo "Notiz gespeichert! Hash: $HASH"
         ;;
-    *)       
+    *)      
+
+     list)
+        # ==========================================
+        # FÜR COMMIT 4: "Implement note list"
+        # ==========================================
+        # Prüft, ob das Verzeichnis existiert und nicht leer ist (Ignoriert .keep)
+        if [ ! -d "$DB_DIR" ] || [ -z "$(find "$DB_DIR" -type f ! -name ".keep" 2>/dev/null)" ]; then
+            echo "Keine Notizen gefunden."
+            exit 0
+        fi
+        
+        # Geht durch alle Dateien im DB-Ordner
+        for FILE in "$DB_DIR"/*; do
+            if [ -f "$FILE" ] && [ "$(basename "$FILE")" != ".keep" ]; then
+                HASH=$(basename "$FILE")
+                CONTENT=$(cat "$FILE")
+                echo "$HASH  -  $CONTENT"
+            fi
+        done
+        ;; 
 
 # ==========================================
         # BASIS-STRUKTUR (Kann von Anfang an rein)
