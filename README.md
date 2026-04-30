@@ -1,1 +1,3 @@
 # Abschlusspruefung
+
+Ein kleines Kommandozeilentool, mit dem man Notizen speichern, auflisten und löschen kann. Jede Notiz wird als einfache Textdatei unter .notes/db/ gespeichert, wobei der Dateiname der SHA-Hash des Inhalts ist – ohne Titel, ohne Endung. Eine Notiz ist schlicht ihr Inhalt. Den Code dafür bekommst du bereitgestellt. Du musst ihn nicht selbst schreiben und wirst auch nicht darüber befragt.
